@@ -21,6 +21,82 @@ function showToast(message) {
 
 window.showToast = showToast;
 
+const menuToggle = document.querySelector(".menu-toggle");
+const primaryNavigation = document.getElementById("primary-navigation");
+
+if (menuToggle && primaryNavigation) {
+    function setNavigationOpen(isOpen) {
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute(
+            "aria-label",
+            isOpen ? "Close navigation" : "Open navigation"
+        );
+        primaryNavigation.classList.toggle("is-open", isOpen);
+    }
+
+    menuToggle.addEventListener("click", function () {
+        const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+        setNavigationOpen(!isOpen);
+    });
+
+    primaryNavigation.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            setNavigationOpen(false);
+        });
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            setNavigationOpen(false);
+            menuToggle.focus();
+        }
+    });
+}
+
+const matchList = document.getElementById("match-list");
+const teamFilter = document.getElementById("team-filter");
+
+if (matchList && teamFilter) {
+    const matchCards = Array.from(matchList.querySelectorAll(".match-card"));
+    const filterStatus = document.getElementById("filter-status");
+    const viewButtons = document.querySelectorAll(".view-button");
+
+    teamFilter.addEventListener("change", function () {
+        const selectedTeam = teamFilter.value;
+        let visibleCount = 0;
+
+        matchCards.forEach(function (card) {
+            const teams = card.dataset.teams.split(" ");
+            const shouldShow = selectedTeam === "all" || teams.includes(selectedTeam);
+
+            card.hidden = !shouldShow;
+            if (shouldShow) {
+                visibleCount += 1;
+            }
+        });
+
+        const message = visibleCount === 1
+            ? "Showing 1 match."
+            : "Showing " + visibleCount + " matches.";
+        filterStatus.textContent = message;
+        showToast(message);
+    });
+
+    viewButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            const selectedView = button.dataset.view;
+
+            matchList.dataset.view = selectedView;
+            viewButtons.forEach(function (viewButton) {
+                const isActive = viewButton === button;
+
+                viewButton.classList.toggle("is-active", isActive);
+                viewButton.setAttribute("aria-pressed", String(isActive));
+            });
+        });
+    });
+}
+
 const bookingForm = document.getElementById("booking-form");
 
 if (bookingForm) {
