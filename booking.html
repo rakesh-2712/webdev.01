@@ -111,6 +111,50 @@
             font-weight: bold;
         }
 
+        .booking-summary {
+            margin-top: 24px;
+            padding: 20px;
+            border: 1px solid #d5dbe3;
+            border-radius: 8px;
+            background: #f8fafc;
+        }
+
+        .booking-summary h2 {
+            margin: 0 0 16px;
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+
+        .booking-summary dl {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px 16px;
+            margin: 0;
+        }
+
+        .booking-summary dt {
+            font-weight: bold;
+        }
+
+        .booking-summary dd {
+            margin: 0;
+            text-align: right;
+        }
+
+        .booking-summary .summary-total {
+            padding-top: 12px;
+            border-top: 1px solid #d5dbe3;
+            color: var(--primary);
+            font-size: 1.15rem;
+            font-weight: bold;
+        }
+
+        .booking-summary-note {
+            margin: 14px 0 0;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
         @media (max-width: 480px) {
             form {
                 padding: 20px;
@@ -151,14 +195,34 @@
             <label for="stand">Stand Category</label>
             <select id="stand" name="stand" required>
                 <option value="" selected disabled>Choose a stand</option>
-                <option value="general">General Stand — ₹1000</option>
-                <option value="premium">Premium Stand — ₹2500</option>
-                <option value="vip">VIP Box — ₹5000</option>
+                <option value="general" data-price="1000">General Stand — ₹1000</option>
+                <option value="premium" data-price="2500">Premium Stand — ₹2500</option>
+                <option value="vip" data-price="5000">VIP Box — ₹5000</option>
             </select>
 
             <label for="tickets">Number of Tickets</label>
             <input id="tickets" name="tickets" type="number" min="1" max="10"
                    step="1" required>
+
+            <section class="booking-summary" aria-labelledby="summary-heading"
+                     aria-live="polite" aria-atomic="true">
+                <h2 id="summary-heading">Booking Summary</h2>
+                <dl>
+                    <dt>Match</dt>
+                    <dd data-summary-match>Not selected</dd>
+                    <dt>Stand</dt>
+                    <dd data-summary-stand>Not selected</dd>
+                    <dt>Price per ticket</dt>
+                    <dd data-summary-price>—</dd>
+                    <dt>Tickets</dt>
+                    <dd data-summary-quantity>Not selected</dd>
+                    <dt class="summary-total">Total</dt>
+                    <dd class="summary-total" data-summary-total>—</dd>
+                </dl>
+                <p class="booking-summary-note" data-summary-note>
+                    Select a match, stand, and valid ticket quantity to calculate your total.
+                </p>
+            </section>
 
             <label class="preference" for="updates">
                 <input id="updates" name="updates" type="checkbox">
