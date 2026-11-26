@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book IPL Tickets</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
     <style>
         :root {
             color-scheme: light;
@@ -170,20 +172,5 @@
             <p id="form-status" role="status" aria-live="polite"></p>
         </form>
     </main>
-
-    <script>
-        const bookingForm = document.getElementById("booking-form");
-        const formStatus = document.getElementById("form-status");
-
-        bookingForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-            formStatus.textContent =
-                "All fields are valid. This demo does not send or store your booking.";
-        });
-
-        bookingForm.addEventListener("reset", function () {
-            formStatus.textContent = "";
-        });
-    </script>
 </body>
 </html>

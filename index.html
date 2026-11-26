@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IPL Ticket Booking</title>
+<link rel="stylesheet" href="styles.css">
+<script src="app.js" defer></script>
 
 <style>
 
@@ -208,14 +210,14 @@ footer{
         <li><a href="#home">Home</a></li>
         <li><a href="#matches">Matches</a></li>
         <li><a href="#tickets">Tickets</a></li>
-        <li><a href="booking.html">Booking</a></li>
+        <li><a href="booking.html#booking-form">Booking</a></li>
     </ul>
 </nav>
 
 <section class="hero" id="home">
     <h1>IPL Ticket Booking 2026</h1>
     <p>Book your seats for the biggest cricket league in India.</p>
-    <a href="booking.html" class="btn">Book Tickets</a>
+    <a href="booking.html#booking-form" class="btn">Book Tickets</a>
 </section>
 
 <section id="matches">
@@ -226,24 +228,28 @@ footer{
             <th>Match</th>
             <th>Date</th>
             <th>Venue</th>
+            <th>Booking</th>
         </tr>
 
         <tr>
             <td>RCB vs CSK</td>
             <td>15 May 2026</td>
             <td>Bengaluru</td>
+            <td><a class="btn" href="booking.html?match=rcb-csk#booking-form">Book</a></td>
         </tr>
 
         <tr>
             <td>MI vs KKR</td>
             <td>18 May 2026</td>
             <td>Mumbai</td>
+            <td><a class="btn" href="booking.html?match=mi-kkr#booking-form">Book</a></td>
         </tr>
 
         <tr>
             <td>SRH vs DC</td>
             <td>20 May 2026</td>
             <td>Hyderabad</td>
+            <td><a class="btn" href="booking.html?match=srh-dc#booking-form">Book</a></td>
         </tr>
     </table>
 </section>
@@ -273,7 +279,7 @@ footer{
 
 <section id="booking">
 <h2 class="section-title">Book Your Ticket</h2>
-<p class="booking-link"><a href="booking.html" class="btn">Open Booking Form</a></p>
+<p class="booking-link"><a href="booking.html#booking-form" class="btn">Open Booking Form</a></p>
 </section>
 
 <footer>
